@@ -9,37 +9,36 @@
 
         <theme href="index.html" />
 
-        <!-- Replace title with Plone's page title  -->
-        <replace css:theme="html head title" css:content="html head title" />
-
-        <!-- Drop the favicon spec coming from content; we'll use the one in the theme. -->
-        <drop content="/html/head/link[@rel='shortcut icon']" />
-
         <!-- Copy base tag from Plone -->
         <before css:theme-children="html head" css:content="html head base" />
 
-        <!-- Copy link, style, meta tags from Plone head -->
-        <after css:theme-children="html head"
-               content="/html/head/link | /html/head/style | /html/head/meta" />
+        <!-- metadata -->
+        <before css:theme-children="html head" css:content="html head meta" />
 
-        <!-- merge classes from Plone body with theme body -->
-        <merge attributes="class" css:theme="body" css:content="body" />
+        <!-- logo -->
+        <replace css:theme="div.nicdark_logo.nicdark_marginleft10 a"
+                 css:content="a#portal-logo" />
 
-        <!-- Copy script tags from Plone head to end of body -->
-        <after css:theme-children="html body" css:content="html head script" />
+        <!-- NAV main menu -->
+        <replace css:theme="nav" css:content="nav" />
 
-        <!-- Move inline scripts in content to end of body -->
-        <drop css:content="body script" />
-        <after css:theme-children="html body" css:content="html body script" method="raw" />
 
-        <!-- Insert your own rules here -->
 
-        <!-- This rule pulls in the whole Plone layout. You'll typically replace this
-             with rules that copy particular parts of the content into particular
-             targets in your theme.
-         -->
-        <after css:theme="body p" css:content="#visual-portal-wrapper" />
+        <!-- 進入編輯畫面，不使用版型，並將二側drop -->
+        <notheme if-path="++add++reporter.content.eventinfo" />
+        <drop css:content="div#portal-column-one" if-path="++add++reporter.content.eventinfo" />
+        <drop css:content="div#portal-column-two" if-path="++add++reporter.content.eventinfo" />
+
+
+
+        <!-- Replace title with Plone's page title  -->
+        <replace css:theme="html head title" css:content="html head title" />
+
+        <replace css:theme-children="#plone_content" css:content-children="#content-core" />
 
     </rules>
 
 </rules>
+
+
+
