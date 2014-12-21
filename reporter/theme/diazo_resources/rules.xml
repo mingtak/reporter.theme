@@ -7,7 +7,15 @@
     <!-- Apply the following rules to standard Plone pages -->
     <rules css:if-content="#visual-portal-wrapper">
 
-        <theme href="index.html" />
+        <theme href="index.html" css:if-content="body.portaltype-reporter-content-homepage" />
+        <theme href="blog-masonry.html" css:if-content="body.template-view-for-article" />
+        <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-article" />
+        <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-customnews" />
+        <theme href="single-excursion.html" css:if-content="body.portaltype-reporter-content-eventinfo" />
+        <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-competition" />
+
+        <theme href="blog-masonry.html" />
+
 
         <!-- Copy base tag from Plone -->
         <before css:theme-children="html head" css:content="html head base" />
@@ -21,24 +29,44 @@
 
         <!-- NAV main menu -->
         <replace css:theme="nav" css:content="nav" />
+        <replace css:theme="i.icon-basket-1"
+                 css:content="a#icon-right-1 i" />
 
 
-
-        <!-- 進入編輯畫面，不使用版型，並將二側drop -->
-        <notheme if-path="++add++reporter.content.eventinfo" />
-        <drop css:content="div#portal-column-one" if-path="++add++reporter.content.eventinfo" />
-        <drop css:content="div#portal-column-two" if-path="++add++reporter.content.eventinfo" />
-
-
+        <!-- add/edit，不使用版型，並將二側drop -->
+        <notheme css:if-content=".template-edit" />
+        <notheme css:if-content=".template-add-form" />
+        <drop css:content="div#portal-column-one" css:if-content=".template-add-form" />
+        <drop css:content="div#portal-column-two" css:if-content=".template-add-form" />
+        <drop css:content="div#portal-column-one" css:if-content=".template-edit" />
+        <drop css:content="div#portal-column-two" css:if-content=".template-edit" />
 
         <!-- Replace title with Plone's page title  -->
         <replace css:theme="html head title" css:content="html head title" />
 
-        <replace css:theme-children="#plone_content" css:content-children="#content-core" />
+        <!-- Footer -->
+        <replace css:theme="section.nicdark_section.nicdark_bg_greydark"
+                 css:content="section.nicdark_section.nicdark_bg_greydark" />
+        <replace css:theme="div.nicdark_copyrightlogo"
+                 css:content="div.nicdark_copyrightlogo" />
+
+        <!-- Sidebar -->
+        <replace css:theme="div.nicdark_right_sidebar"
+                 css:content="div.nicdark_right_sidebar" />
+
+        <!-- Top banner -->
+        <replace css:theme="section#nicdark_parallax_title"
+                 css:content="section#nicdark_parallax_title" />
+
+        <!-- content -->
+          <!-- content core -->
+        <after css:theme="div#plone_content" css:content-children="div#content-core" />
+          <!-- drop #plone_content -->
+        <drop css:theme="div#plone_content" />
+
+        <!-- portal-column-two -->
+        <replace css:theme-children="div#plone_sidebar" css:content-children="#portal-column-two" />
 
     </rules>
 
 </rules>
-
-
-
