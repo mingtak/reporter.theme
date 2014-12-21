@@ -1,26 +1,118 @@
-<div i18n:domain="plone"
-     id="portal-footer">
-          <p>
-               <span i18n:translate="description_copyright" tal:omit-tag="">
-               The
-               <span i18n:name="plonecms" tal:omit-tag="">
-                    <a href="http://plone.org" i18n:translate="label_plone_cms">Plone<sup>&reg;</sup> Open Source CMS/WCM</a>
-               </span>
-               is
-               <abbr title="Copyright" i18n:name="copyright" i18n:attributes="title title_copyright;">&copy;</abbr>
-               2000-<tal:year i18n:name="current_year" tal:content="view/year" />
-               by the
-               <span i18n:name="plonefoundation" tal:omit-tag="">
-                    <a href="http://plone.org/foundation" i18n:translate="label_plone_foundation">Plone Foundation</a></span>
-               and friends.
-               </span>
+<div i18n:domain="reporter.theme">
 
-               <span i18n:translate="description_license" tal:omit-tag="">
-               Distributed under the
-                    <span i18n:name="license" tal:omit-tag="">
-                         <a href="http://creativecommons.org/licenses/GPL/2.0/" i18n:translate="label_gnu_gpl_licence">GNU GPL license</a></span>.
-               </span>
-          </p>
-          <p>This footer may be updated by editing the plone.app.layout.viewlets.footer.pt template in your theme's "template_overrides" directory. Any Plone viewlet or skin template my be similarly overriden.</p>
+<tal:registry define="aboutUs python:context.portal_registry['reporter.content.configlet.headerandfootersetting.IHeaderAndFooterSetting.aboutUs'];
+                      hotTags python:context.portal_registry['reporter.content.configlet.headerandfootersetting.IHeaderAndFooterSetting.hotTags']">
 
+<section class="nicdark_section nicdark_bg_greydark">
+    <!--start nicdark_container-->
+    <div class="nicdark_container nicdark_clearfix">
+
+        <div class="nicdark_space30"></div>
+
+        <div class="grid grid_4 nomargin percentage">
+
+            <div class="nicdark_space20"></div>
+
+            <div class="nicdark_margin10">
+                <h4 class="white" i18n:translate="">ABOUT US</h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+                <div class="nicdark_space20"></div>
+                <p class="white" tal:content="aboutUs">about us content.</p>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+                <div class="nicdark_space20"></div>
+
+            <div class="nicdark_focus left nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+                <div class="nicdark_margin10">
+                    <a href="#" class="nicdark_facebook nicdark_press right nicdark_btn_icon small nicdark_radius white"><i class="icon-facebook-1"></i></a>
+                </div>
+                <div class="nicdark_margin10">
+                    <a href="#" class="nicdark_press right nicdark_btn_icon nicdark_bg_red nicdark_shadow small nicdark_radius white"><i class="icon-gplus"></i></a>
+                </div>
+                <div class="nicdark_margin10">
+                    <a href="#" class="nicdark_press right nicdark_btn_icon nicdark_bg_blue nicdark_shadow small nicdark_radius white"><i class="icon-twitter-1"></i></a>
+                </div>
+            </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="grid grid_4 nomargin percentage">
+            
+            <div class="nicdark_space30"></div>
+
+            <div class="nicdark_marginleft10">
+                <h4 class="white" i18n:translate="">HOT TAGS</h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+            </div>
+            <div class="nicdark_space10"></div>
+<tal:repeat repeat="hotTag python:hotTags.split('\n')">
+            <a class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10"
+               tal:attributes="href python:hotTag.split(':')[1].strip()"
+               tal:content="python:hotTag.split(':')[0]">Teacher
+            </a>
+</tal:repeat>
+        </div>
+
+        <div class="grid grid_4 nomargin percentage">
+
+            <div class="nicdark_space20"></div>
+
+            <div class="nicdark_margin10">
+                <h4 class="white" i18n:translate="">CONTACT</h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+                <div class="nicdark_space20"></div>
+<form action="/contactus">                
+                <input class="nicdark_bg_greydark2 nicdark_radius nicdark_shadow white small subtitle" type="text" value="" placeholder="EMAIL">
+                <div class="nicdark_space20"></div>
+                <textarea rows="3" class="nicdark_bg_greydark2 nicdark_radius nicdark_shadow white small subtitle" placeholder="NAME / MESSAGE"></textarea>
+                <div class="nicdark_space20"></div>
+                <!--<input class="nicdark_btn nicdark_bg_green small nicdark_shadow nicdark_radius white nicdark_press" type="submit" value="SEND">-->
+                <a href="submit-message.html" class="nicdark_mpopup_ajax nicdark_btn nicdark_bg_green small nicdark_shadow nicdark_radius white nicdark_press">SEND</a>
+</form>
+            </div>
+        </div> 
+
+        <div class="nicdark_space50"></div> 
+
+    </div>
+    <!--end nicdark_container-->
+            
+</section>
+<!--end section-->
+
+
+<!--start section-->
+<div class="nicdark_section nicdark_bg_greydark2 nicdark_copyrightlogo">
+
+    <!--start nicdark_container-->
+    <div class="nicdark_container nicdark_clearfix">
+
+        <div class="grid grid_6 nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+            <div class="nicdark_space20"></div>
+            <p class="white">© Copyright 2012-<tal:year replace="view/year">2014</tal:year>
+               by <span class="grey">Baby</span>With.Me - Made With <i class="icon-heart-filled red nicdark_zoom"></i> In Taiwan
+            </p>
+        </div>
+
+
+        <div class="grid grid_6">
+            <div class="nicdark_focus right nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+                <div class="nicdark_margin10">
+                    <a href="#start_nicdark_framework" class="nicdark_zoom nicdark_internal_link right nicdark_btn_icon nicdark_bg_blue small nicdark_radius white"><i class="icon-up-outline"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--end nicdark_container-->
+</div>
+<!--end section-->
+
+</tal:registry>
 </div>
