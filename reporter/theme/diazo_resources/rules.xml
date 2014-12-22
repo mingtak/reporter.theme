@@ -11,7 +11,7 @@
         <theme href="blog-masonry.html" css:if-content="body.template-view-for-article" />
         <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-article" />
         <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-customnews" />
-        <theme href="single-excursion.html" css:if-content="body.portaltype-reporter-content-eventinfo" />
+        <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-eventinfo" />
         <theme href="single-post-right-sidebar.html" css:if-content="body.portaltype-reporter-content-competition" />
 
         <theme href="blog-masonry.html" />
@@ -67,6 +67,8 @@
         <!-- portal-column-two -->
         <replace css:theme-children="div#plone_sidebar" css:content-children="#portal-column-two" />
 
+        <!-- external-service -->
+        <after css:theme-children="body" css:content-children="div#external-service" />
     </rules>
 
 </rules>

@@ -16,9 +16,6 @@ fake-eggs/
 parts/
 dist/
 var/
-*.html
-*.js
-*.css
 *.png
 *.jpg
 *.psd
